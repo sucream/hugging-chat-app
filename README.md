@@ -14,7 +14,8 @@ python main.py
 
 3. 브라우저 및 API 클라이언트에서 확인
    - `/login`: 로그인
-   - `/new_conversation`: 새로운 대화 시작
+   - `/new_conversation`: 새로운 대화 세션 생성
+   - `/conversations`: 대화 세션 목록 확인
    - `/chat`: 대화하기
 
 

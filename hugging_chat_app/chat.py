@@ -44,11 +44,7 @@ class HuggingChat:
         async with self.session.post(
             'https://huggingface.co/login',
             data=self.login_info,
-        ) as response:
-            # print(response.status)
-            # # print(await response.text())
-            # print(response.headers)
-            # print(response.cookies.items())
+        ) as _:
             pass
 
         location = await self.getAuthURL()
@@ -77,6 +73,13 @@ class HuggingChat:
                 raise Exception(f"new conversation fatal! - {response.status}")
             res_data = await response.json()
             return res_data["conversationId"]
+
+    async def get_conversations(self):
+        async with self.session.get(
+            "https://huggingface.co/chat/__data.json",
+        ) as response:
+            data = await response.json()
+            return data["nodes"][0]["data"]
 
     async def getAuthURL(self) -> str:
         url = "https://huggingface.co/chat/login"
