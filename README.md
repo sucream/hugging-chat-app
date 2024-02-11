@@ -1,6 +1,8 @@
 # HuggingChat 써보기
 - HuggingFace의 [HuggingChat](https://huggingface.co/chat/) 테스트 해보기
 
+![DEMO](images/demo.gif)
+
 ## 사용법
 1. `.env` 파일 생성 및 다음과 같이 로그인 이메일 및 패스워드 작성
 ```
@@ -17,6 +19,12 @@ python main.py
    - `/new_conversation`: 새로운 대화 세션 생성
    - `/conversations`: 대화 세션 목록 확인
    - `/chat`: 대화하기
+
+3.1. `client.py`로 API 호출
+- 서버가 실행 중인 상태에서 다음 명령어를 실행하여 API를 호출할 수 있음
+```bash
+python client.py
+```
 
 
 

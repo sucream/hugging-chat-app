@@ -1,4 +1,5 @@
 import os
+from contextlib import asynccontextmanager
 
 from hugging_chat_app.chat import HuggingChat, LoginInfo
 
@@ -8,9 +9,18 @@ from fastapi.responses import StreamingResponse, JSONResponse
 
 hugging_chat_obj = None
 
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    print("startup")
+    yield
+    global hugging_chat_obj
+    if hugging_chat_obj is not None:
+        await hugging_chat_obj.session.close()
+    print("shutdown")
+
 
 def get_app():
-    app = FastAPI()
+    app = FastAPI(lifespan=lifespan)
 
     @app.get("/")
     async def root():
